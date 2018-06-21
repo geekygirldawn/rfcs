@@ -1,4 +1,5 @@
 source :rubygems
 
-gem 'rugged'
+gem 'git'
+gem 'semantic'
 gem 'pry'

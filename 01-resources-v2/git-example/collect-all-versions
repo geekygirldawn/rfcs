@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require "json"
+require "subprocess"
+require "stringio"
+
+# linux (~2 branches, ~766k commits)
+$request = {
+  config: {uri: "https://github.com/torvalds/linux"},
+  from: {}
+}
+
+# rails (~36 branches, ~70k commits)
+$request = {
+  config: {uri: "https://github.com/rails/rails"},
+  from: {}
+}
+
+# booklit (~10 branches, ~200 commits)
+$request = {
+  config: {uri: "https://github.com/vito/booklit"},
+  from: {}
+}
+
+# concourse (~15 branches, ~8500 commits)
+$request = {
+  config: {uri: "https://github.com/concourse/concourse"},
+  from: {}
+}
+
+def check_all
+  while true
+    Subprocess::Process.new(
+      ["bundle", "exec", "./artifact", "check"],
+      stdin: Subprocess::PIPE,
+      stdout: Subprocess::PIPE) do |p|
+      out, _ = p.communicate(JSON.dump($request))
+
+      res = JSON.parse(out, symbolize_names: true)
+
+      return if res[:spaces].all? { |s| s[:has_latest] }
+
+      res[:spaces].each do |s|
+        $request[:from][s[:space].to_sym] = s[:versions].last[:version]
+        puts "checked #{s[:space]}: #{s[:versions].first[:version][:ref]}..#{s[:versions].last[:version][:ref]}"
+      end
+    end
+  end
+end
+
+check_all
