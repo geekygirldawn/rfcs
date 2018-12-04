@@ -20,14 +20,14 @@ than wrangling an ever-growing comment chain on a GitHub issue.
 1. Fork this repository.
 1. Copy the `000-example` RFC template, naming it something like
    `123-my-proposal`.
-  * Don't worry too much about the number; they don't have to be sequential.
+    * Don't worry too much about the number; they don't have to be sequential.
     You can try to predict your pull request number for example, and/or just
     edit it after submitting.
 1. Write your RFC in `proposal.md` under your RFC directory.
     * Try to outline the motivation for the proposal first. A proposal with
       no context is more likely to fall under scrutiny.
     * Having a summary near the beginning of the proposal is also helpful.
-    * Take special care to think about any risks or drawbacks to your proposal
+    * Take special care to think about any risks, side effects, or drawbacks to your proposal
       ahead-of-time. These have to be assessed at some point! If you're not
       sure how to resolve them, leave them under an "open questions" section,
       and we can all try to work through them together.
@@ -49,7 +49,7 @@ than wrangling an ever-growing comment chain on a GitHub issue.
    lines in the pull request and submitting reviews. This allows conversations
    to be marked "resolved" and prevents the comment history on the pull request
    from growing larger and larger.
-  * As the RFC author, feel free to leave your own comments/feedback, using the
+    * As the RFC author, feel free to leave your own comments/feedback, using the
     pull request as a "captain's log" as you think about the problem more and
     reach key decisions. The point of all this is to have a clear public record
     for the decision-making process.
